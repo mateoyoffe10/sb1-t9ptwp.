@@ -1,50 +1,145 @@
-import { Button } from "@/components/ui/button";
-import { Cigarette, Heart, TrendingDown } from "lucide-react";
-import Link from "next/link";
+"use client";
 
-export default function Home() {
+import React from "react";
+
+const App: React.FC = () => {
+  // Function to handle navigation
+  const handleNavigation = (url: string) => {
+    window.location.href = url; // Navigate to the specified URL
+  };
+
+  // Function to go back to the previous page
+  const goBack = () => {
+    window.history.back();
+  };
+
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white">
-      <div className="container mx-auto px-4 py-16">
-        <nav className="flex justify-between items-center mb-16">
-          <h1 className="text-2xl font-bold text-gray-800 flex items-center gap-2">
-            <Cigarette className="w-6 h-6 text-blue-600" />
-            DejarFácil
-          </h1>
-          <Link href="/signin">
-            <Button variant="outline">Iniciar Sesión</Button>
-          </Link>
-        </nav>
-
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div>
-            <h2 className="text-5xl font-bold text-gray-900 mb-6">
-              Tomá el control de tus hábitos de consumo
-            </h2>
-            <p className="text-xl text-gray-600 mb-8">
-              Llevá el control de tu camino hacia una vida libre de humo con nuestro tablero intuitivo y herramientas de progreso.
-            </p>
-            <Link href="/signin">
-              <Button size="lg" className="bg-blue-600 hover:bg-blue-700">
-                Comenzá tu Camino
-              </Button>
-            </Link>
+    <div style={styles.app}>
+      <header style={styles.header}>
+        <div style={styles.logo}>
+          <img src="/vector.png" style={styles.vector} />
+          <img src="/qs.png" style={styles.image} />
+        </div>
+        <div style={styles.icons}>
+          {/* Quinta Sección primero */}
+          <div style={styles.icon}>
+            <img
+              src="/pre.png"
+              alt="Quinta Sección"
+              style={styles.iconImage}
+              onClick={() => handleNavigation("/dequetrata")} // Ruta hacia la nueva pantalla
+            />
+            <p style={styles.iconText}>¿De que se trata?</p>
           </div>
 
-          <div className="grid grid-cols-2 gap-6">
-            <div className="bg-white p-6 rounded-xl shadow-lg">
-              <Heart className="w-12 h-12 text-pink-500 mb-4" />
-              <h3 className="text-xl font-semibold mb-2">Seguimiento de Salud</h3>
-              <p className="text-gray-600">Controlá las mejoras en tu salud a medida que dejás de fumar.</p>
-            </div>
-            <div className="bg-white p-6 rounded-xl shadow-lg">
-              <TrendingDown className="w-12 h-12 text-green-500 mb-4" />
-              <h3 className="text-xl font-semibold mb-2">Progreso Visual</h3>
-              <p className="text-gray-600">Visualizá tu avance en la reducción del consumo de tabaco.</p>
-            </div>
+          {/* Las demás secciones */}
+          <div style={styles.icon}>
+            <img
+              src="/calendario.png"
+              alt="Calendario"
+              style={styles.iconImage}
+              onClick={() => handleNavigation("http://localhost:3000/calendario")}
+            />
+            <p style={styles.iconText}>Calendario</p>
+          </div>
+          <div style={styles.icon}>
+            <img
+              src="/consejos.png"
+              alt="Consejos"
+              style={styles.iconImage}
+              onClick={() => handleNavigation("/consejos")}
+            />
+            <p style={styles.iconText}>Consejos</p>
+          </div>
+          <div style={styles.icon}>
+            <img
+              src="/medicos.png"
+              alt="Medicos"
+              style={styles.iconImage}
+              onClick={() => handleNavigation("/medicos")}
+            />
+            <p style={styles.iconText}>Medicos</p>
+          </div>
+          <div style={styles.icon}>
+            <img
+              src="/premios.png"
+              alt="Premios"
+              style={styles.iconImage}
+              onClick={() => handleNavigation("/premios")}
+            />
+            <p style={styles.iconText}>Premios</p>
           </div>
         </div>
-      </div>
+      </header>
+      
+      <img
+        src="/ppa.png"
+        style={styles.ppa}
+        onClick={() => handleNavigation("/signin")}
+      />
     </div>
   );
-}
+};
+
+const styles = {
+  app: {
+    textAlign: "center" as "center",
+    padding: "20px",
+    fontFamily: "Arial, sans-serif",
+  },
+  header: {
+    display: "flex",
+    flexDirection: "column" as "column",
+    alignItems: "center",
+  },
+  logo: {
+    display: "flex",
+    alignItems: "center",
+    marginBottom: "40px",
+  },
+  image: {
+    margin: "20px auto",
+    maxWidth: "100%",
+    height: "auto",
+    marginLeft: "170px",
+    width: "380px",
+  } as React.CSSProperties,
+  vector: {
+    position: "absolute",
+    margin: "20px auto",
+    maxWidth: "100%",
+    height: "auto",
+    right: "1000px",
+    bottom: "520px",
+    marginTop: "-200px",
+  } as React.CSSProperties,
+  icons: {
+    display: "flex",
+    justifyContent: "space-around",
+    width: "100%",
+    maxWidth: "800px",
+  },
+  icon: {
+    display: "flex",
+    flexDirection: "column" as "column",
+    alignItems: "center",
+  },
+  iconImage: {
+    width: "130px",
+    height: "180px",
+    marginBottom: "10px",
+    cursor: "pointer", // Make it look clickable
+  },
+  iconText: {
+    fontSize: "18px",
+    fontWeight: "bold" as "bold",
+    color: "#000000", // Color negro
+  },
+  ppa: {
+    marginTop: "153px",
+    marginLeft: "1100px",
+    cursor: "pointer", // Make it look clickable
+  },
+};
+
+export default App;
